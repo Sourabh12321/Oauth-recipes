@@ -27,7 +27,7 @@ require("dotenv").config();
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/callback"
+  callbackURL: "https://oauth-recipe.onrender.com/auth/google/callback"
 },
   async function (accessToken, refreshToken, profile, cb) {
     let name = profile._json.name;
@@ -65,7 +65,7 @@ app.get('/auth/google/callback',
         expiresIn: "2h",
       }
     );
-    res.redirect(`http://localhost:3000?token=${tosendtoken}&Name=${user.name}`)
+    res.redirect(`https://oauth-recipe.onrender.com?token=${tosendtoken}&Name=${user.name}`)
 
   });
 
@@ -137,7 +137,7 @@ app.get('/auth/github', async (req, res) => {
           expiresIn: "2h",
         }
       );
-      res.redirect(`http://localhost:3000?token=${tosendtoken}&Name=${isUserpresent.name}`)
+      res.redirect(`https://oauth-recipe.onrender.com?token=${tosendtoken}&Name=${isUserpresent.name}`)
     } else {
       const userData = await User.build({ name: githubUser.name, email: email, password: uuidv4() });
       await userData.save();
@@ -148,7 +148,7 @@ app.get('/auth/github', async (req, res) => {
           expiresIn: "2h",
         }
       );
-      res.redirect(`http://localhost:3000?token=${tosendtoken}&Name=${githubUser.name}`)
+      res.redirect(`https://oauth-recipe.onrender.com?token=${tosendtoken}&Name=${githubUser.name}`)
     }
 
   } catch (error) {
