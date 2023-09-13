@@ -65,7 +65,7 @@ app.get('/auth/google/callback',
         expiresIn: "2h",
       }
     );
-    res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app?token=${tosendtoken}&Name=${user.name}`)
+    res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app/recipe?token=${tosendtoken}&Name=${user.name}`)
 
   });
 
@@ -137,7 +137,7 @@ app.get('/auth/github', async (req, res) => {
           expiresIn: "2h",
         }
       );
-      res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app?token=${tosendtoken}&Name=${isUserpresent.name}`)
+      res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app/recipe?token=${tosendtoken}&Name=${isUserpresent.name}`)
     } else {
       const userData = await User.build({ name: githubUser.name, email: email, password: uuidv4() });
       await userData.save();
@@ -148,7 +148,7 @@ app.get('/auth/github', async (req, res) => {
           expiresIn: "2h",
         }
       );
-      res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app?token=${tosendtoken}&Name=${githubUser.name}`)
+      res.redirect(`https://recipes-application-p1ujipuu7-sourabh12321.vercel.app/recipe?token=${tosendtoken}&Name=${githubUser.name}`)
     }
 
   } catch (error) {
